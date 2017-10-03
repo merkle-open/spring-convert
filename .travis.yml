@@ -11,7 +11,7 @@ env:
     - secure: "PCYtUid57aOi8btlIxLqgXbHAyvKz0t6vEG9SvK/fDwTzv+MsvIK/nQTNHfEFPdtwFSu//sCM8C9/2xUk4sfXFBoEC1P96L1hPiL7wT5Jqz/+MSXhVYn/Zr3CjzjZff1rdXnX7LzgQTGEBIfJqLVgj8Nhzq3X9Bxe4PGKuMI2e6iDC3F+KNzllUlXhFw+jCXg1ryXipBMQS1qi4c5FVua0sp8iZTQH0qkR2nlTMOpZWZgCNtxET617x7lP+F1fVEBK7OOuOjQd+npVIyujMYh6rWST9UksMmDOyfrVaqDeSXRppOEzNPC16C9ynP98QpHSY1d7ok3+b+W3yvcPGO+E3Dfdv70Cnkv/oUVGX0t6ShIZg/tYq9vW6E5tijkS/LcUdrAapUzOoIgDZ3nzCx7LJ2CluXI3Mmjif3orc0KjX/lL7ex2boYFCkeAKffLqqTrADjB2Tj+cLcSovzCW2ailVopZaiyh1dzwKqkXvd01BKn+QZqK0a3ecv0LihzjEN+VoBe5FSOMU3g5qRUspWS9tDoxIftQ6yZfLzjPUUVZ3bpIyV4r9EDKgDWWQPz6OXmpn0khpya0LBZMLIHCPsPDka489PtIDVcLeSi3EqTlqpCU7I45ieNipta31p9P2n4Y08TH00R2BpwcByIkrvVDm1jRPnc8YhmKhyRlLc9A="
 before_install:
   - openssl aes-256-cbc -K $encrypted_55bd6e8f9e6f_key -iv $encrypted_55bd6e8f9e6f_iv -in codesign.asc.enc -out codesign.asc -d
-  - gpg --yes --batch --import codesigning.asc
+  - gpg --yes --batch --import codesign.asc
 jdk:
   - oraclejdk8
 install: mvn clean install -P !ossrh -DskipTests=true -Dmaven.javadoc.skip=true -B -V -U
