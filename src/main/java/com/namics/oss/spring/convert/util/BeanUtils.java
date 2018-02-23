@@ -1,9 +1,10 @@
 package com.namics.oss.spring.convert.util;
 
-import org.joda.time.DateTime;
+
 import org.springframework.beans.BeansException;
 import org.springframework.beans.FatalBeanException;
 import org.springframework.util.Assert;
+import org.springframework.util.ClassUtils;
 
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Method;
@@ -13,7 +14,6 @@ import java.lang.reflect.Type;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -63,7 +63,9 @@ public abstract class BeanUtils extends org.springframework.beans.BeanUtils {
 	 */
 	// @checkstyle:off
 	@SuppressWarnings("unchecked")
-	protected static void copyAndConvertProperties(Object source, Object target, String[] ignoreProperties,
+	protected static void copyAndConvertProperties(Object source,
+	                                               Object target,
+	                                               String[] ignoreProperties,
 	                                               // @checkstyle:on
 	                                               Map<Class<?>, Map<Class<?>, Converter<?, ?>>> converters) throws BeansException {
 
@@ -164,19 +166,11 @@ public abstract class BeanUtils extends org.springframework.beans.BeanUtils {
 	private static Map<Class<?>, Map<Class<?>, Converter<?, ?>>> converters = new HashMap<Class<?>, Map<Class<?>, Converter<?, ?>>>();
 
 	static {
-		addConverter(converters, new DateToDateTimeConverter());
-		addConverter(converters, new Converter<DateTime, Date>() {
-
-			@Override
-			public Date convert(DateTime from) {
-				if (from == null) {
-					return null;
-				}
-				return from.toDate();
-			}
-		});
+		if (ClassUtils.isPresent("org.joda.time.DateTime", null)) {
+			addConverter(converters, new DateToJodaDateTimeConverter());
+			addConverter(converters, new JodaDateTimeDateConverter());
+		}
 		addConverter(converters, new Converter<BigInteger, String>() {
-
 			@Override
 			public String convert(BigInteger from) {
 				if (from == null) {
@@ -238,14 +232,4 @@ public abstract class BeanUtils extends org.springframework.beans.BeanUtils {
 		});
 	}
 
-	private static class DateToDateTimeConverter extends Converter<Date, DateTime> {
-
-		@Override
-		public DateTime convert(Date from) {
-			if (from == null) {
-				return null;
-			}
-			return new DateTime(from);
-		}
-	}
 }
