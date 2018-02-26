@@ -184,15 +184,15 @@
 				</configuration>
 			</plugin>
 			<plugin>
-				<groupId>external.atlassian.jgitflow</groupId>
+				<groupId>com.manamind.jgitflow</groupId>
 				<artifactId>jgitflow-maven-plugin</artifactId>
-				<version>1.0-m5.1</version>
+				<version>1.0.0</version>
 				<configuration>
-					<pushReleases>false</pushReleases>
-					<pushHotfixes>false</pushHotfixes>
-					<pushFeatures>false</pushFeatures>
-					<pullDevelop>false</pullDevelop>
-					<pullMaster>false</pullMaster>
+					<pushReleases>true</pushReleases>
+					<pushHotfixes>true</pushHotfixes>
+					<pushFeatures>true</pushFeatures>
+					<pullDevelop>true</pullDevelop>
+					<pullMaster>true</pullMaster>
 					<noDeploy>true</noDeploy>
 				</configuration>
 			</plugin>
