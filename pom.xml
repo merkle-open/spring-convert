@@ -188,11 +188,11 @@
 				<artifactId>jgitflow-maven-plugin</artifactId>
 				<version>1.0-m5.1</version>
 				<configuration>
-					<pushReleases>true</pushReleases>
-					<pushHotfixes>true</pushHotfixes>
-					<pushFeatures>true</pushFeatures>
-					<pullDevelop>true</pullDevelop>
-					<pullMaster>true</pullMaster>
+					<pushReleases>false</pushReleases>
+					<pushHotfixes>false</pushHotfixes>
+					<pushFeatures>false</pushFeatures>
+					<pullDevelop>false</pullDevelop>
+					<pullMaster>false</pullMaster>
 					<noDeploy>true</noDeploy>
 				</configuration>
 			</plugin>
