@@ -84,6 +84,7 @@
 			<groupId>joda-time</groupId>
 			<artifactId>joda-time</artifactId>
 			<version>2.9.4</version>
+			<optional>true</optional>
 		</dependency>
 
 		<dependency>
@@ -255,7 +256,6 @@
 						<artifactId>maven-javadoc-plugin</artifactId>
 						<configuration>
 							<failOnError>false</failOnError>
-							<additionalparam>-Xdoclint:none</additionalparam>
 						</configuration>
 						<executions>
 							<execution>
